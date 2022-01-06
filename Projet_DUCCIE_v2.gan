@@ -47,12 +47,20 @@ Gestionnaire de fichiers : GitHub
         </task>
         <task id="5" name="Recherche et définitions des objectifs" color="#8cb6ce" shape="0,1,0,1,0,0,1,0,0,1,0,1,1,0,0,0" meeting="false" start="2021-12-01" duration="30" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true">
             <notes>
-                <![CDATA[# Ensemble du groupe]]>
+                <![CDATA[* Lecture de quelques articles de vulgarisation sur le sujet des automates cellulaires en général et du jeu de la vie en particulier.
+
+* Définir ce qu'on envisage d'inclure dans le projet.
+
+# Ensemble du groupe]]>
             </notes>
         </task>
         <task id="10" name="RoadMap" color="#8cb6ce" shape="0,1,0,1,0,0,1,0,0,1,0,1,1,0,0,0" meeting="false" start="2021-12-01" duration="43" complete="0" thirdDate="2021-11-30" thirdDate-constraint="0" expand="true">
             <notes>
-                <![CDATA[# Ensemble du groupe]]>
+                <![CDATA[Elaboration de la feuille de route : 
+    découpage en différentes tâches
+    Estimation de la période de travail sur chacune des tâches
+
+# Ensemble du groupe]]>
             </notes>
         </task>
         <task id="7" name="Écriture de la classe Cellule" color="#8cb6ce" meeting="false" start="2021-12-15" duration="15" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true">
@@ -66,6 +74,10 @@ Gestionnaire de fichiers : GitHub
             <depend id="11" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="11" name="Écriture du fichier principal de jeu pour une interface type &quot;terminal&quot; avec gestion de la version autonome" color="#8cb6ce" meeting="false" start="2022-01-26" duration="15" complete="0" thirdDate="2022-01-26" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[Faire tourner le jeu de la vie en mode terminal avec les fonctionnalités de base...
+]]>
+            </notes>
             <depend id="33" type="2" difference="20" hardness="Strong"/>
             <depend id="36" type="2" difference="20" hardness="Strong"/>
             <depend id="38" type="2" difference="30" hardness="Strong"/>
@@ -76,36 +88,62 @@ Gestionnaire de fichiers : GitHub
             <depend id="51" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="44" name="Ecriture de l'interface graphique" color="#8cb6ce" meeting="false" start="2022-02-16" duration="49" complete="0" thirdDate="2021-11-15" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[Avec Tkinter
+
+Définir les diverses possibilités offertes à l'utilisateur par l'interface.]]>
+            </notes>
             <depend id="48" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="48" name="finalisation travail" color="#8cb6ce" meeting="false" start="2022-04-26" duration="24" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true"/>
+        <task id="48" name="finalisation travail" color="#8cb6ce" meeting="false" start="2022-04-26" duration="24" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[Relecture, corrections des derniers jours... Doit aboutir sur le rendu final du code et de la documentation jointe]]>
+            </notes>
+        </task>
         <task id="51" name="documentation technique et rapport" color="#8cb6ce" meeting="false" start="2022-02-16" duration="49" complete="0" thirdDate="2021-12-27" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[Ecriture du rapport en LaTeX
+
+documentation technique accompagant le code?
+]]>
+            </notes>
             <depend id="48" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="33" name="Enregistrement des images obtenues" color="#8cb6ce" meeting="false" start="2022-03-16" duration="27" complete="0" thirdDate="2022-02-16" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[Donner la possibilité d'enregistrer dans un fichier à part une situation obtenue (utilisation du module PIL), voire sur plusieurs images une succession de générations.
+]]>
+            </notes>
             <depend id="48" type="2" difference="0" hardness="Rubber"/>
         </task>
         <task id="36" name="Intégrer à l’interface une bibliothèque d’exemples" color="#8cb6ce" meeting="false" start="2022-03-16" duration="27" complete="0" thirdDate="2022-02-16" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[Proposer différents exemples de situations de départ intéressantes pour présenter un éventail de possibilités offertes par le jeu de la vie (c'est Turing complet quand même!)
+]]>
+            </notes>
             <depend id="48" type="2" difference="0" hardness="Rubber"/>
         </task>
         <task id="38" name="Reconnaissance de motifs" color="#8cb6ce" meeting="false" start="2022-03-30" duration="19" complete="0" thirdDate="2022-02-16" thirdDate-constraint="0" expand="true">
             <notes>
-                <![CDATA[ (se limiter aux motifs stables les plus fréquents dans les cendres ?)]]>
+                <![CDATA[Tenter de repérer à partir d'une situation des motifs particuliers intéressants;
+ (se limiter aux motifs stables les plus fréquents dans les cendres ?)
+
+]]>
             </notes>
         </task>
         <task id="39" name="Définition d’automates proches" color="#8cb6ce" meeting="false" start="2022-04-13" duration="19" complete="0" thirdDate="2022-02-16" thirdDate-constraint="0" expand="true">
             <notes>
                 <![CDATA[ (voir les variantes highlife ou day & night sur wikipédia, ou le jeu de la vie quantique)
 
-optionnel; à voir selon l'état d'avancement]]>
+optionnel; à voir selon l'état d'avancement du projet à l'échéance]]>
             </notes>
         </task>
         <task id="40" name="Algorithme hashlife" color="#8cb6ce" meeting="false" start="2022-04-13" duration="19" complete="0" thirdDate="2022-02-16" thirdDate-constraint="0" expand="true">
             <notes>
-                <![CDATA[optionnel; à voir selon l'état d'avancement]]>
+                <![CDATA[optionnel; à voir selon l'état d'avancement  du projet à l'échéance et la difficulté de compréhension de l'algorithme]]>
             </notes>
         </task>
-        <task id="41" name="Permettre à l’utilisateur de définir ses règles" color="#8cb6ce" meeting="false" start="2022-04-26" duration="18" complete="0" thirdDate="2022-02-16" thirdDate-constraint="0" expand="true">
+        <task id="41" name="Permettre à l’utilisateur de définir ses règles de transition" color="#8cb6ce" meeting="false" start="2022-04-26" duration="18" complete="0" thirdDate="2022-02-16" thirdDate-constraint="0" expand="true">
             <notes>
                 <![CDATA[optionnel; à voir selon l'état d'avancement]]>
             </notes>

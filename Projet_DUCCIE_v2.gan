@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2021-11-29" view-index="0" gantt-divider-location="483" resource-divider-location="300" version="3.1.3100" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2021-11-22" view-index="0" gantt-divider-location="483" resource-divider-location="300" version="3.1.3100" locale="fr_FR">
     <description/>
     <view zooming-state="default:7" id="gantt-chart">
         <field id="tpd3" name="Nom" width="243" order="0"/>
@@ -72,6 +72,9 @@ Gestionnaire de fichiers : GitHub
         </task>
         <task id="9" name="Écriture de la classe GrilleTorique" color="#8cb6ce" meeting="false" start="2022-01-05" duration="15" complete="0" thirdDate="2022-01-05" thirdDate-constraint="0" expand="true">
             <depend id="11" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="52" name="Réfléchir sur l'algorithme de calcul des générations" color="#8cb6ce" meeting="false" start="2022-01-05" duration="10" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Rubber"/>
         </task>
         <task id="11" name="Écriture du fichier principal de jeu pour une interface type &quot;terminal&quot; avec gestion de la version autonome" color="#8cb6ce" meeting="false" start="2022-01-26" duration="15" complete="0" thirdDate="2022-01-26" thirdDate-constraint="0" expand="true">
             <notes>

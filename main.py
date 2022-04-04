@@ -6,7 +6,7 @@ def efface_ecran():
     print("\u001B[H\u001B[J")
     
 def main():
-    vie = Grille(10, 15)
+    vie = Grille(10,15)
     vie.remplir_alea(50)
     vie.affecte_voisins()
     while True:

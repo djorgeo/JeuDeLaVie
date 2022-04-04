@@ -1,25 +1,24 @@
 from __future__ import annotations
 from cellule import Cellule
-#from typing import List
+from typing import List
 from random import random
 
 
 class Grille():
     """ classe Grille pour les cellules du le Jeu de la vie """
-    def __init__(self: Grille, largeur: int, hauteur: int) -> None:
+    def __init__(self: Grille, nbLignes: int, nbColonnes: int) -> None:
         """ Constructeur de la classe Grille """
-        self.largeur = largeur
-        self.hauteur = hauteur
-        self.matrix = [[Cellule() for i in range(self.hauteur)] for j in range(self.largeur)]
-
+        self.nbLignes = nbLignes
+        self.nbColonnes = nbColonnes        
+        self.matrix = [[Cellule() for j in range(self.nbColonnes)] for i in range(self.nbLignes)]
+        
     def dans_grille(self: Grille, i: int, j: int) -> bool:
         """ teste si le point de coordonnées (i,j) est dans la grille """
-        return 0 <= i < self.largeur and 0 <= j < self.hauteur
+        return 0 <= i < self.nbLignes and 0 <= j < self.nbColonnes
 
     def setXY(self: Grille, i: int, j: int, cellule: Cellule) -> None:
         """ affecte une nouvelle cellule à la case (i, j) de la grille """
-        if (i, j) in self:
-        #if self.dans_grille(i, j):
+        if self.dans_grille(i, j):
             self.matrix[i][j] = cellule
         else:
             raise IndexError(str(i, j))
@@ -31,13 +30,13 @@ class Grille():
         else:
             return None
 
-    def get_largeur(self: Grille) -> int:
-        """ renvoie la largeur de la grille """
-        return self.largeur
+    def get_nbColonnes(self: Grille) -> int:
+        """ renvoie le nombre de colonnes de la grille """
+        return self.nbColonnes
 
-    def get_hauteur(self: Grille) -> int:
-        """ renvoie la hauteur de la grille """
-        return self.hauteur
+    def get_nbLignes(self: Grille) -> int:
+        """ renvoie le nombre de lignes de la grille """
+        return self.nbLignes
 
     @staticmethod
     def est_voisin(i: int, j: int, x: int, y: int) -> bool:
@@ -53,28 +52,26 @@ class Grille():
                     voisins.append(self.getXY(i, j))
         return voisins
 
-    def affecte_voisins(self: Grille):
-        """
-        Affecte à chaque cellule de la grille la liste de ses voisins
-        """
-        for i in range(self.largeur):
-            for j in range(self.hauteur):
+    def affecte_voisins(self: Grille) -> None:
+        """ affecte à chaque cellule de la grille la liste de ses voisins """
+        for i in range(self.nbLignes):
+            for j in range(self.nbColonnes):
                 cellule = self.getXY(i, j)
                 cellule.set_voisins(self.get_voisins(i, j))
 
     def __str__(self: Grille) -> str:
         """ méthode spéciale pour afficher l'objet sous forme d'une chaîne de caractères """
         chaine = ""
-        for i in range(self.largeur):
-            for j in range(self.hauteur):
+        for i in range(self.nbLignes):
+            for j in range(self.nbColonnes):
                 chaine += str(self.getXY(i, j))
             chaine += "\n"
         return chaine
 
-    def remplir_alea(self, taux: int) -> None:
+    def remplir_alea(self, taux: int):
         """ remplit aléatoirement la Grille avec un certain taux de Cellule vivantes """
-        for i in range(self.largeur):
-            for j in range(self.hauteur):
+        for i in range(self.nbLignes):
+            for j in range(self.nbColonnes):
                 if random() <= (taux / 100):
                     cellule = self.getXY(i, j)
                     cellule.naitre()
@@ -83,26 +80,27 @@ class Grille():
 
     def jeu(self: Grille) -> None:
         """ passe en revue toutes les Cellule de la Grille, calcule leur état futur """
-        for i in range(self.largeur):
-            for j in range(self.hauteur):
+        for i in range(self.nbLignes):
+            for j in range(self.nbColonnes):
                 cellule = self.getXY(i, j)
                 cellule.calcule_etat_futur()
 
     def actualise(self: Grille) -> None:
         """ bascule toutes les Cellule de la Grille dans leur état futur """
-        for i in range(self.largeur):
-            for j in range(self.hauteur):
+        for i in range(self.nbLignes):
+            for j in range(self.nbColonnes):
                 cellule = self.getXY(i, j)
                 cellule.basculer()
 
 if __name__ == "__main__":
+
     maGrille = Grille(15, 10)
     
     # test d'accès au attributs
-    assert maGrille.largeur == 15
-    assert maGrille.hauteur == 10
-    assert maGrille.get_largeur() == 15
-    assert maGrille.get_hauteur() == 10
+    assert maGrille.nbLignes == 15
+    assert maGrille.nbColonnes == 10
+    assert maGrille.get_nbLignes() == 15
+    assert maGrille.get_nbColonnes() == 10    
     
     # test de la méthode dans_grille()
     assert maGrille.dans_grille(0,0) == True
@@ -124,3 +122,4 @@ if __name__ == "__main__":
     for k in [0,50,100]:
         maGrille.remplir_alea(k)
         print(maGrille)
+        

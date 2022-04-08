@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Nov 14 21:47:52 2021
+
+@author: jcottin
+"""
 from __future__ import annotations
 from typing import List
 

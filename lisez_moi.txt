@@ -1,0 +1,9 @@
+Le fichier rapport.pdf contient le rapport du projet dont les sources LateX sont contenues dans le répartoire ...
+le fichier diagramme... contient la roadmap du projet
+
+
+Le répertoire code contient les fichiers python du projet
+le fichier main.py permet de tester le fonctionnement de la grille en mode console. Il génère une grille aléatoire et calcule les évolutions successives (interrompre par Ctrl-C)
+Le fichier app.py est le fichier à démarrer pour exécuter le projet en mode graphique
+
+

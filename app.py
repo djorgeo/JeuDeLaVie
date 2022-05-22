@@ -5,11 +5,14 @@ import tkinter as tk
 from tkinter import ttk
 from grilleFrame import GrilleFrame
 import time
+from bibli_exemples import *
 
+NBLIGNES,NBCOLONNES=30,50
 
 class App(tk.Tk):
     """Classe principale du projet qui se charge de créer les différents composants graphiques"""
-
+    
+    
     def __init__(self, minWidth, minHeight, title):
         """Constructeur de la classe App"""
         tk.Tk.__init__(self)
@@ -42,7 +45,7 @@ class App(tk.Tk):
         self.rootFrame.grid_columnconfigure(0, weight=1)
 
         # Creation de la grille du jeu
-        self.gridFrame = GrilleFrame(master=self.rootFrame, nbLignes=25, nbColonnes=45)
+        self.gridFrame = GrilleFrame(master=self.rootFrame, nbLignes=NBLIGNES, nbColonnes=NBCOLONNES,typeg='plane')
         self.gridFrame.grid(column=0, row=0, sticky="NSEW")
 
         # Création d'un Frame de configuration
@@ -53,7 +56,7 @@ class App(tk.Tk):
         self.configFrame.grid_columnconfigure(2, weight=30)
         self.configFrame.grid_columnconfigure(3, weight=10)
 
-        # Création des widgets pour lacgénération aléatoire
+        # Création des widgets pour la génération aléatoire
         # d'une configuration de départ
         self.aleaFrameTitle = ttk.Label(self.configFrame, text="Initialisation aléatoire",
                                         style="frameTitle.TLabel")
@@ -78,7 +81,7 @@ class App(tk.Tk):
         self.knownStructsFrame = ttk.LabelFrame(self.configFrame, labelwidget=self.knownStructsFrameTitle,
                                                 style="Config.TLabelframe", labelanchor="nw")
         self.knownStructsFrame.grid(row=0, column=1, sticky="NSEW", padx=10, pady=20)
-        options = ["Clignotant", "Ruche 1", "Ruche 2", "Balise", "Crapeau", "Escalier", "Pulsard", "Pentadecathlon",
+        options = ["Clignotant", "Ruche 1", "Ruche 2", "Balise", "Crapeau", "Escalier", "Pulsar", "Pentadecathlon",
                    "Vaisseau spatial"]
         self.knownStructure = tk.StringVar()
         self.knownStructure.set(options[0])
@@ -143,16 +146,6 @@ class App(tk.Tk):
         self.currentIter.set("0")
         self.aleaRate.set("Taux: 0%")
 
-    def play_niter(self):
-        """Méthode pour mettre à jour la grille du jeu pendant un nombre d'itérations donné"""
-        if self.nIteration.get() != "":
-            for i in range(int(self.nIteration.get())):
-                self.currentIter.set(str(int(self.currentIter.get()) + 1))
-                self.gridFrame.jeu()
-                self.gridFrame.actualise()
-                self.update_idletasks()
-                self.update()
-                time.sleep(0.05)
 
     @staticmethod
     def validate_numeric_entry(user_input):
@@ -163,31 +156,41 @@ class App(tk.Tk):
 
     def init_known_struct(self):
         """méthode pour initialiser le jeu avec une configuration connue (clignotant, ruche, etc.)"""
-        match self.knownStructure.get():
-            case "Clignotant":
-                self.gridFrame.clignotant()
-            case "Ruche 1":
-                self.gridFrame.ruche1()
-            case "Ruche 2":
-                self.gridFrame.ruche2()
-            case "Balise":
-                self.gridFrame.balise()
-            case "Crapeau":
-                self.gridFrame.crapeau()
-            case "Escalier":
-                self.gridFrame.escalier()
-            case "Pulsard":
-                self.gridFrame.pulsard()
-            case "Pentadecathlon":
-                self.gridFrame.pentadecathlon()
-            case "Vaisseau spatial":
-                self.gridFrame.vaisseau_spatial()
+        test=self.knownStructure.get()
+        if test=="Clignotant":
+            clignotant(self.gridFrame)
+        elif test=="Ruche 1":
+            ruche1(self.gridFrame)
+        elif test=="Ruche 2":
+            ruche2(self.gridFrame)
+        elif test=="Balise":
+            balise(self.gridFrame)
+        elif test=="Crapeau":
+            crapeau(self.gridFrame)
+        elif test=="Escalier":
+            escalier(self.gridFrame)
+        elif test=="Pulsar":
+            pulsar(self.gridFrame)
+        elif test=="Pentadecathlon":
+            pentadecathlon(self.gridFrame)
+        elif test=="Vaisseau spatial":
+            vaisseau_spatial(self.gridFrame)
 
+    def play_niter(self):
+        """Méthode pour mettre à jour la grille du jeu pendant un nombre d'itérations donné"""
+        if self.nIteration.get() != "":
+            for i in range(int(self.nIteration.get())):
+                self.currentIter.set(str(int(self.currentIter.get()) + 1))
+                self.gridFrame.jeu()
+                self.gridFrame.actualise()
+                self.update_idletasks()
+                self.update()
+                time.sleep(0.05)
+                
     def update_grid_type(self, event):
-        """méthode pour changer le type de grille et réaffceter les voisins en coséquence"""
-        self.gridFrame.gridType = self.gridType.get()
+        """méthode pour changer le type de grille et réaffecter les voisins en conséquence"""
+        self.gridFrame.set_type_grille(self.gridType.get()[7:]) # le slicing supprime le mot "Grille"
         self.gridFrame.affecte_voisins()
-        print(self.gridFrame.est_voisin(1, 0, 0, 44))
 
 
 if __name__ == "__main__":

@@ -3,42 +3,25 @@
 
 from __future__ import annotations
 from typing import List
+from cellule import Cellule
 import tkinter as tk
 
 
-class CelluleFrame(tk.Frame):
+
+class CelluleFrame(tk.Frame, Cellule):
     """ classe CelluleFrame pour la version graphique du Jeu de la vie """
 
     def __init__(self: CelluleFrame, master, height, width) -> None:
         """ Constructeur de la classe CelluleFrame """
         self.DEATH_CELL_BG = "#E8F9FD"
         self.LIVING_CELL_BG = "#2155CD"
+        self.HOVER_CELL_BG = "#79DAE8"
+        
         super().__init__(master=master, height=height, width=width, bg=self.DEATH_CELL_BG,
-                         highlightbackground="#79DAE8", highlightthickness="1")
-        self.actuel = False
-        self.futur = False
-        self.voisins = None
+                         highlightbackground=self.HOVER_CELL_BG, highlightthickness="1")
+        Cellule.__init__(self)
         self.bg = self.DEATH_CELL_BG
-
-    def est_vivant(self: CelluleFrame) -> bool:
-        """ renvoie l'état actuel de la cellule """
-        return self.actuel
-
-    def set_voisins(self: CelluleFrame, voisins: List[CelluleFrame]) -> None:
-        """ affecte comme la liste voisins passée en paramètre à l'attribut voisins """
-        self.voisins = voisins
-
-    def get_voisins(self: CelluleFrame) -> List[CelluleFrame]:
-        """ renvoie la liste des voisins de la cellule """
-        return self.voisins
-
-    def naitre(self: CelluleFrame) -> None:
-        """ affecte la valeur True à l'état futur de la cellule """
-        self.futur = True
-
-    def mourir(self: CelluleFrame) -> None:
-        """ affecte la valeur False à l'état futur de la cellule """
-        self.futur = False
+    
 
     def basculer(self: CelluleFrame) -> None:
         """ affecte l'état futur de la cellule à l'état actuel """
@@ -50,28 +33,7 @@ class CelluleFrame(tk.Frame):
             self.bg = self.DEATH_CELL_BG
             self["bg"] = self.DEATH_CELL_BG
 
-    def __str__(self: CelluleFrame) -> str:
-        """ méthode spéciale pour afficher l'objet sous forme d'une chaîne de caractères """
-        if self.actuel:
-            chaine = "X"
-        else:
-            chaine = "-"
-        return chaine
 
-    def calcule_etat_futur(self: CelluleFrame) -> None:
-        """ implémente les règles d’évolution du jeu de la vie en préparant l'état futur à sa nouvelle valeur """
-        # on compte le nombre de voisins vivants
-        nbre_voisins_vivants = 0
-        for voisin in self.voisins:
-            if voisin.est_vivant():
-                nbre_voisins_vivants += 1
-        # on applique les règles d'évolution
-        if (nbre_voisins_vivants != 2) and (nbre_voisins_vivants != 3):
-            self.mourir()
-        elif nbre_voisins_vivants == 3:
-            self.naitre()
-        else:
-            self.futur = self.actuel
 
 
 if __name__ == "__main__":
@@ -115,11 +77,11 @@ if __name__ == "__main__":
     # test de la cellule c11
     assert c11.actuel == True
     assert c11.futur == False
-    assert c11.voisins == None
+    assert c11.voisins == []
     # test de la cellule c22
     assert c22.actuel == False
     assert c22.futur == False
-    assert c22.voisins == None
+    assert c22.voisins == []
 
     # test de la méthode est_vivant()
     assert c33.est_vivant() == False
@@ -140,9 +102,6 @@ if __name__ == "__main__":
     assert c22.get_voisins() == [c11, c12, c13, c21, c23, c31, c32, c33]
     assert c33.get_voisins() == [c22, c23, c32]
 
-    # test d'affichage
-    assert str(c11) == 'X'
-    assert str(c12) == '-'
 
     # tests de la méthode calcule_etat_futur
     for cel in [c11, c12, c13, c21, c22, c23, c31, c32, c33]:

@@ -14,7 +14,7 @@ class Cellule():
         """ Constructeur de la classe Cellule """
         self.actuel = False
         self.futur = False
-        self.voisins = None
+        self.voisins = []
 
     def est_vivant(self : Cellule) -> bool:
         """ renvoie l'état actuel de la cellule """
@@ -104,11 +104,11 @@ if __name__ =="__main__":
     # test de la cellule c11
     assert c11.actuel == True
     assert c11.futur == False
-    assert c11.voisins == None
+    assert c11.voisins == []
     # test de la cellule c22
     assert c22.actuel == False
     assert c22.futur == False
-    assert c22.voisins == None
+    assert c22.voisins == []
     
     # test de la méthode est_vivant()
     assert c33.est_vivant() == False

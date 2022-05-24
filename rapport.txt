@@ -1,11 +1,12 @@
 
 des recherches à la première feuille de route
 
-Nous sommes partis sur l'idée de travailler autour du jeu de la vie, un thème déjà bien étudié mais sur lequel on trouve encore régulièrement des nouvelles découvertes aussi bien mathématiques qu'algorithmique. Dans le cadre de notre projet, ce choix offre l'avantage de devoir penser les algorithmes aussi bien pour gérer les données "spatiales" (la grille, théoriquement infinie) que "temporelles" (l'évolution, sur un nombre de générations potentiellement très grand) et donc de devoir travailler pour obtenir des algorithmes efficaces. Le sujet permet aussi d'introduire naturellement une interface graphique, tout d'abord pour offrir une visualisation des évolutions de la population au fil des générations mais aussi pour offrir à l'utilisateur des possibilités d'interaction afin de faire ses propres expérimentations (placements dans la grille, sauvegardes,...)
+Nous sommes partis sur l'idée de travailler autour du jeu de la vie, un thème déjà bien étudié mais sur lequel on trouve encore régulièrement des nouvelles découvertes aussi bien mathématiques qu'algorithmiques. Dans le cadre de notre projet, ce choix offre l'avantage de devoir penser les algorithmes aussi bien pour gérer les données "spatiales" (la grille, théoriquement infinie) que "temporelles" (l'évolution, sur un nombre de générations potentiellement très grand) et donc de devoir travailler pour obtenir des algorithmes efficaces. Le sujet permet aussi d'introduire naturellement une interface graphique, tout d'abord pour offrir une visualisation des évolutions de la population au fil des générations mais aussi pour offrir à l'utilisateur des possibilités d'interaction afin de faire ses propres expérimentations (placements dans la grille, sauvegardes,...)
 
-Afin de mieux cerner le sujet et pour réfléchir au contenu à intégrer, nous avons débuté le travail par quelques recherches bibliographiques  autour des automates cellulaires (introduits par Von Neumann alors qu'il travaillait sur des systèmes autoréplicatifs), leur rôle, les questions scientifiques à leur sujet, voire métaphysique (cf bibliographie en annexe 1)
+Afin de mieux cerner le sujet et pour réfléchir au contenu à intégrer, nous avons débuté le travail par quelques recherches bibliographiques  autour des automates cellulaires (introduits par Von Neumann alors qu'il travaillait sur des systèmes autoréplicatifs), leur rôle, les questions scientifiques à leur sujet, voire métaphysiques (certains envisageant l'univers comme un automate cellulaire simple dont les lois physiques seraient des propriétés émergentes; cf bibliographie en annexe 1)
 
-À partir de là, une première réflexion à propos du contenu minimal du projet (faire touner le code du jeu de la vie dans une console Python) a permis d'arriver à une première feuille de route, présentant les étapes vers ce contenu minimal ainsi que ce qui pourrait l'étoffer pour obtenir un projet complet. Cette feuille de route "idéale" (cf annexe 2) a été utile pour garder à l'esprit les différents objectifs et les hiérarchiser mais du point de vue de la réalisation pratique, la vie privée et professionnelle (travail à temps plein en dehors du DU) a beaucoup pesé sur les ambitions initiales et généré une importante frustration. Ceci ajouté au fait que, si le travail de groupe est toujours difficile à organiser, il l'est encore plus à distance, entre trois personnes qui ne se connaissent pas et ne se croisent jamais.
+À partir de là, une première réflexion à propos du contenu minimal du projet (faire touner le code du jeu de la vie dans une console Python) a permis d'arriver à une première feuille de route, présentant les étapes vers ce contenu minimal ainsi que ce qui pourrait l'étoffer pour obtenir un projet complet. Le travail en équipe sur la feuille de route a été l'occasion d'apprendre à utiliser Github, ce qui a été bien utile par la suite au moment de partager le code.
+Cette feuille de route "idéale" (cf annexe 2) a été utile pour garder à l'esprit les différents objectifs et les hiérarchiser mais du point de vue de la réalisation pratique, la vie privée et professionnelle (travail à temps plein en dehors du DU) a beaucoup pesé sur les ambitions initiales, générant une importante frustration. Ceci ajouté au fait que, si le travail de groupe est toujours difficile à organiser, il l'est encore plus à distance entre trois personnes qui ne se connaissent pas et ne se croisent jamais.
 
 
 
@@ -18,22 +19,33 @@ règles du jeu de la vie, version classique de John H. Conway :
 Le jeu se déroule sur une grille rectangulaire de cellules ayant un état binaire : elles sont soit vivantes, soit mortes. L'évolution temporelle se fait de façon discrète : le nouvel état de toutes les cellules de la grille est mis à jour simultanément en fonction de leur voisines à l'état précédent. La règle de transition est dite B3/S23 (pour Born 3, Stay 2 ou 3) qui signifie qu'une cellule morte devient vivante si elle possède exactement 3 voisines vivantes et qu'une cellule vivante reste en vie si elle possède 2 ou 3 voisines vivantes. Dans les autres cas, une cellule morte reste morte et une cellule vivante décède.
 
 noyau : algos et classes
-Pour implémenter ce jeu, nous avons construit deux classes, l'une implémentant une cellule et l'autre une grille qui permettra de suivre l'évolution du jeu de la vie sur une succession de générations.
+Pour implémenter ce jeu, nous avons construit deux classes, l'une implémentant une cellule et l'autre une grille qui permettra de suivre l'évolution du jeu de la vie sur une succession de générations. Pour tout le projet, c'est la notation matricielle qui est utilisée pour se repérer sur la grille, (i,j) représente ainsi le numéro de ligne puis le numéro de colonne.
 
 La classe Cellule (fichier cellule.py) contient trois attributs : l'état actuel de la cellule, son état futur et la liste des cellules voisines. La nécessité d'avoir deux attributs pour les états vient du fait que le changement d'état de toutes les cellules d'une grille devant être simultané, on ne peut pas modifier l'état d'une cellule avant de l'avoir utilisé sur ses voisines à venir. 
-La méthode calcule_etat_futur()) parcourt la liste des voisins de la cellule et en fonction du nombre de voisins vivants modifie l'état futur de la cellule considérée. Puis c'est la méthode basculer() qui, appelée en tant voulue, modifie l'état actuel de la cellule.
+La méthode calcule_etat_futur()) parcourt la liste des voisins de la cellule et en fonction du nombre de voisins vivants modifie l'état futur de la cellule considérée. Puis c'est la méthode basculer() qui, appelée en temps voulu, modifie l'état actuel de la cellule.
 
-La classe Grille(fichier grille.py) contient trois attributs : le nombre de lignes, de colonnes et matrix, un tableau à deux dimensions contenant des cellules (totues mortes à la création). La méthode remplir_alea(taux) permet de passer certaines cellules à l'état vivante et la méthode affecte_voisins() va construire pour chaque cellule sa liste de voisins.
-Une fois la grille prête à débuter, le déroulement des générations successives du jeu de la vie se fait en deux étapes, ainsi qu'expliqué plus haut. La méthode jeu() parcourt les cellules et calcule leur état futur puis la méthode actualise() réalise la bascule pour chaque cellule afin d'obtenir la nouvelle génération.
+La classe Grille (fichier grille.py) contient quatre attributs : le nombre de lignes, de colonnes, le type de grille (plane ou torique) et matrix, un tableau à deux dimensions contenant des cellules (toutes mortes à la création de la grille). La méthode remplir_alea(taux) permet de passer aléatoirement selon un taux moyen donné certaines cellules à l'état vivant et la méthode affecte_voisins() va construire pour chaque cellule sa liste de voisins.
+Une fois la grille prête à débuter, le déroulement des générations successives du jeu de la vie se fait en deux étapes, ainsi qu'expliqué plus haut. La méthode jeu() parcourt les cellules et calcule pour chacune leur état futur, le résultat étant stocké dans l'attribut correspondant de la cellule. Dans un second temps, lorsque tous les états futurs ont été calculés, la méthode actualise() reparcourt la grille et réalise la bascule pour chaque cellule afin d'obtenir la nouvelle génération.
 
 
 interface graphique : tkinter
-Utilisation de git et github
+On utilise tout d’abord deux classes CelluleFrame et GrilleFrame implémentant les versions graphiques des classes Cellule et Grille aisément grâce à l’héritage multiple permis par Python. La classe CelluleFrame ajoute simplement des informations de couleur de la case et seule la méthode basculer() est surchargée. Pour la classe GrilleFrame, c'est essentiellement l'attribut matrix qui est modifiée car, en plus d'être dessinées et colorées, les cases de la grille doivent pouvoir réagir à l'utilisateur. Cette classe contient aussi trois méthodes correspondant au clic de souris, au survol d'une case ou au contraire lorsque le pointeur quitte une case.
+
+Le fichier jeuVie.py est le fichier principal du programme. C'est lui qui construit la fenêtre d'interface grâce à tkinter. L'attribut gridFrame est une instance de la classe GrilleFrame (### si j'ai bien compris? Si c'est le cas, p-e le renommer en grilleFrame ou juste grille?) et les différentes méthodes fonctionnent à peu près toutes sur le même principe : récupérer les données entrées par l'utilisateur et modifier l'attribut gridFrame pour prendre en compte les voeux de l'utilisateur. Par exemple la méthode alea_init_config() utilise d'abord self.get_alea_rate() pour obtenir le taux entré par l'utilisateur puis l'utilise en argument de la méthode remplir_alea() sur l'attribut gridFrame.
 
 
-Les DLC
 
-Comme déjà mentionné, le manque de temps nous a amené à restreindre nos ambitions et à laisser de côté certaines idées initialement envisagées pour y revenir plus tard, une fois les examens passés par exemple. Le projet atteindra sa forme finale pendant l'été... Parmi les pistes d'amélioration, agrandir la bibliothèque d'exemples (pourquoi pas un canon générateur de nombres premiers?) et permettre à l'utilisateur de sauvegarder des configurations sous forme d'images.Un peu plus difficile, offrir la possibilité de définir des règles du jeu différentes (en terme d'apparition et de mort des cellules en fonction du voisinage) pour étudier des variantes du jeu de la vie. A plus long terme, envisager d'autres variantes avec un nombre d'états des cellules différent (le jeu de la vie quantique), et du point de vue algorithmique réfléchir à un programme de reconnaissance de motifs (permettant par exemple d'identifier des configurations stables), ou de recherche d'antécédents (travailler sur les jardins d'Eden) et enfin, essayer de comprendre et d'implémenter une version de l'algorithme Hashlife  qui a permis dans les années 1980 de grands progrèssur le sujet grâce à des calculs extrêmement efficaces.
+
+
+Utilisation de git et github:
+A part dire que ça a été utilisé... ???
+
+
+
+Et après?
+
+Comme déjà mentionné, le manque de temps nous a amené à restreindre nos ambitions et à laisser de côté certaines idées initialement envisagées pour y revenir plus tard, une fois les examens passés par exemple. Le projet atteindra sa forme finale pendant l'été... Parmi les pistes d'amélioration, agrandir la bibliothèque d'exemples (pourquoi pas un canon générateur de nombres premiers?) et permettre à l'utilisateur de sauvegarder des configurations sous forme d'images. Un peu plus long à implémenter, offrir la possibilité de définir des règles du jeu différentes (en terme d'apparition et de mort des cellules en fonction du voisinage, voire en utilisant un voisinage différent comme celui de Von Neumann) pour étudier des variantes du jeu de la vie. 
+A plus long terme, envisager d'autres variantes avec un nombre d'états des cellules différent (exemple du jeu de la vie quantique mentionné dans la bibliographie), et du point de vue algorithmique réfléchir à un programme de reconnaissance de motifs (permettant par exemple d'identifier des configurations stables ou périodiques dans une grille donnée), ou de recherche d'antécédents (travailler sur les jardins d'Eden) et enfin, essayer de comprendre et d'implémenter une version de l'algorithme Hashlife qui a permis dans les années 1980 de grands progrès sur le sujet grâce à des calculs extrêmement efficaces (mais qui dépasse largement le niveau licence!).
 
 
 
@@ -42,6 +54,41 @@ Comme déjà mentionné, le manque de temps nous a amené à restreindre nos amb
 
 
 ANNEXE 1 : bibliographie sélective
+
+
+* Dossier : "l'univers est-il calculateur?"
+	Wolfram et la notion d'information pour expliquer les lois physiques
+Olivier POSTEL-VINAY, "les nouveaux démiurges", La Recherche, n°360, janvier 2003, p. 34-37
+Mélanie MITCHELL, "Quelques raisons de douter", La Recherche, n°360, janvier 2003, p. 38-43
+
+
+* "La riche zoologie des automates cellulaires", Interstices, https://interstices.info/la-riche-zoologie-des-automates-cellulaires/#:~:text=Les%20automates%20cellulaires%20mod%C3%A9lisent%20des,selon%20une%20%C3%A9chelle%20de%20complexit%C3%A9 (consulté le 21/05/2022), par Marianne DELORME et Jacques MAZOYER
+	les classes de Wolfram et autres systèmes de classification
+
+* Dossier : "Les lois physiques existent-elles?"
+	concept d'émergence, philosophie des sciences
+Michel BITBOL, "la nature est-elle un puits sans fond?", La Recherche, n°405, février 2007, p. 31-36
+La recherche 405, février 2007
+
+
+* Nazim FATÈS et Irène MARCOVICI, "Automates cellulaires : la complexité dans les règles de l'art", La Recherche, n°538, juillet-aout 2018, P. 67-70
+	4 classes de complexité selon wolfram, automates avec introduction d'erreurs ou d'asynchronisme
+
+
+* Jean-Paul DELAHAYE, "Le royaume du Jeu de la vie", Pour la Science, n°378, avril 2009, p. 86-91.
+	exemples de configurations, métacellules, algo de hashlife, logiciel golly
+	voir aussi : https://www.drgoulu.com/2009/03/29/la-resurrection-du-jeu-de-la-vie/#.YcSnHWjMKUk
+
+
+* Pablo ARRIGHI et Jonathan GRATTAGE, "Le monde est un ordinateur quantique", La Recherche, n°467, septembre 2012, p. 72-75
+	jeu de la vie quantique
+
+
+* programme golly : http://golly.sourceforge.net/ (consulté le 21/05/2022)
+
+
+
+
 
 
 ANNEXE 2 : la feuille de route "idéale"

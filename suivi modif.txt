@@ -33,11 +33,14 @@ suppression des méthodes et tests d'affichage (str) qui n'ont pas de sens pour 
 	grilleFrame.py
 
 idem : utilisation de l'héritage de grille dans l'init
+ajout de commentaires pour la méthode update_grid_type
 
 déplacement de tous les exemples dans un fichier à part
 
+ajout des tests sur une grille torique 
 
-	app.py 
+
+	app.py renommé en jeuVie.py
 
 import du fichier bibli_exemples et réécriture de la fonction init_known_struct
 	avec petite modification orthographe : pulsard --> pulsar

@@ -56,11 +56,12 @@ A plus long terme, envisager d'autres variantes avec un nombre d'états des cell
 ANNEXE 1 : bibliographie sélective
 
 
+À propos des automates cellulaires en physique et du concept d'émergence : 
+
 * Dossier : "l'univers est-il calculateur?"
 	Wolfram et la notion d'information pour expliquer les lois physiques
 Olivier POSTEL-VINAY, "les nouveaux démiurges", La Recherche, n°360, janvier 2003, p. 34-37
 Mélanie MITCHELL, "Quelques raisons de douter", La Recherche, n°360, janvier 2003, p. 38-43
-
 
 * "La riche zoologie des automates cellulaires", Interstices, https://interstices.info/la-riche-zoologie-des-automates-cellulaires/#:~:text=Les%20automates%20cellulaires%20mod%C3%A9lisent%20des,selon%20une%20%C3%A9chelle%20de%20complexit%C3%A9 (consulté le 21/05/2022), par Marianne DELORME et Jacques MAZOYER
 	les classes de Wolfram et autres systèmes de classification
@@ -74,17 +75,22 @@ La recherche 405, février 2007
 * Nazim FATÈS et Irène MARCOVICI, "Automates cellulaires : la complexité dans les règles de l'art", La Recherche, n°538, juillet-aout 2018, P. 67-70
 	4 classes de complexité selon wolfram, automates avec introduction d'erreurs ou d'asynchronisme
 
+Plus spécifiquement autour du jeu de la vie : 
 
 * Jean-Paul DELAHAYE, "Le royaume du Jeu de la vie", Pour la Science, n°378, avril 2009, p. 86-91.
 	exemples de configurations, métacellules, algo de hashlife, logiciel golly
 	voir aussi : https://www.drgoulu.com/2009/03/29/la-resurrection-du-jeu-de-la-vie/#.YcSnHWjMKUk
 
-
 * Pablo ARRIGHI et Jonathan GRATTAGE, "Le monde est un ordinateur quantique", La Recherche, n°467, septembre 2012, p. 72-75
 	jeu de la vie quantique
 
-
 * programme golly : http://golly.sourceforge.net/ (consulté le 21/05/2022)
+
+
+
+
+
+
 
 
 

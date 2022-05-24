@@ -190,9 +190,11 @@ class App(tk.Tk):
     def update_grid_type(self, event):
         """méthode pour changer le type de grille et réaffecter les voisins en conséquence"""
         self.gridFrame.set_type_grille(self.gridType.get()[7:]) # le slicing supprime le mot "Grille"
-        self.gridFrame.affecte_voisins()
+        self.gridFrame.affecte_voisins() # Changer le type de grille change les voisinages des cases du bors. En appelant la méthode affecte_voisins(), on va modifier  la liste des voisins des cellules.
 
 
 if __name__ == "__main__":
     app = App(minWidth=920, minHeight=676, title="Jeu de la vie")
     app.mainloop()
+
+# tests utilisateurs des différentes interaction effectuées. En particulier il a bien été vérifié que le passage d'une grille torique à plane fonctionnait correctement dans les deux sens.

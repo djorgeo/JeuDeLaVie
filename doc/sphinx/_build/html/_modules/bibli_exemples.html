@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bibli_exemples &mdash; Documentation Jeu de la Vie 1.0.0</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Jeu de la Vie
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../app.html">module app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibli_exemples.html">module bibli_exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cellule.html">module cellule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../celluleFrame.html">module celluleFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grille.html">module grille</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grilleFrame.html">module grilleFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">module main</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jeu de la Vie</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Code du module</a> &raquo;</li>
+      <li>bibli_exemples</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de bibli_exemples</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">bibli_exemples (bibliothèque d&#39;exemples) est un module dans lequel quelques exemples de structures</span>
+<span class="sd">connues ont été implémenté. Ce module permet en outre de mettre à la disposition de l&#39;utilisateur</span>
+<span class="sd">des exemples lui permettant de comprendre quel est l&#39;utilité du jeu de la vie.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="clignotant"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.clignotant">[docs]</a><span class="k">def</span> <span class="nf">clignotant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler un clignotant.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ruche1"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.ruche1">[docs]</a><span class="k">def</span> <span class="nf">ruche1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler une ruche.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;4&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ruche2"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.ruche2">[docs]</a><span class="k">def</span> <span class="nf">ruche2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler la génération de 4 ruches.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;17&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="balise"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.balise">[docs]</a><span class="k">def</span> <span class="nf">balise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler une balise.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="crapeau"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.crapeau">[docs]</a><span class="k">def</span> <span class="nf">crapeau</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler un crapeau.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="escalier"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.escalier">[docs]</a><span class="k">def</span> <span class="nf">escalier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler un</span>
+<span class="sd">    escalier qui se transforme en 4 blocs stables.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;63&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="pulsar"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.pulsar">[docs]</a><span class="k">def</span> <span class="nf">pulsar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler un</span>
+<span class="sd">    pulsar qui oscille avec une période de 3.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;50&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="pentadecathlon"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.pentadecathlon">[docs]</a><span class="k">def</span> <span class="nf">pentadecathlon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler un</span>
+<span class="sd">    pentadecathlon qui oscille avec une période de 15.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;45&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="vaisseau_spatial"><a class="viewcode-back" href="../bibli_exemples.html#bibli_exemples.vaisseau_spatial">[docs]</a><span class="k">def</span> <span class="nf">vaisseau_spatial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialise la grille avec la configuration initiale qui permet de simuler un</span>
+<span class="sd">    vaisseau spatial capable de se déplacer.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">nIteration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;60&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Joffrey COTTIN, Clarine AZINMEDEM, Christophe RAVIER.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

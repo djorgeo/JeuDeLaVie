@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>celluleFrame &mdash; Documentation Jeu de la Vie 1.0.0</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Jeu de la Vie
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../app.html">module app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibli_exemples.html">module bibli_exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cellule.html">module cellule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../celluleFrame.html">module celluleFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grille.html">module grille</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grilleFrame.html">module grilleFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">module main</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jeu de la Vie</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Code du module</a> &raquo;</li>
+      <li>celluleFrame</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de celluleFrame</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">celluleFrame est un module utilisé uniquement par la version graphique du jeu.</span>
+<span class="sd">Ce module contient l&#39;implémentation de la classe CelluleFrame qui est au centre</span>
+<span class="sd">de la version graphique du projet, car il s&#39;agit de l&#39;élément de base de l&#39;interface graphique</span>
+<span class="sd">du jeu.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">cellule</span> <span class="kn">import</span> <span class="n">Cellule</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+
+
+<div class="viewcode-block" id="CelluleFrame"><a class="viewcode-back" href="../celluleFrame.html#celluleFrame.CelluleFrame">[docs]</a><span class="k">class</span> <span class="nc">CelluleFrame</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">,</span> <span class="n">Cellule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe de base de l&#39;interface graphique. Elle hérite de la classe Cellule et permet d&#39;implémenter </span>
+<span class="sd">    les caractéristiques graphiques d&#39;une cellule du jeu de la vie. </span>
+<span class="sd">    master: il s&#39;agit du composant graphique parent de la cellule.</span>
+<span class="sd">    height: hauteur de la cellule.</span>
+<span class="sd">    width: largeur de la cellule.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DEATH_CELL_BG</span> <span class="o">=</span> <span class="s2">&quot;#E8F9FD&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Couleur de fond à utilisée pour les cellules mortes&quot;&quot;&quot;</span>
+    <span class="n">LIVING_CELL_BG</span> <span class="o">=</span> <span class="s2">&quot;#2155CD&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Couleur de fond à utilisée pour les cellules vivantes&quot;&quot;&quot;</span>
+    <span class="n">HOVER_CELL_BG</span> <span class="o">=</span> <span class="s2">&quot;#79DAE8&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Couleur de fond à utiliser lorsqu&#39;on survole une cellule&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">CelluleFrame</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Constructeur de la classe CelluleFrame &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">master</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">DEATH_CELL_BG</span><span class="p">,</span>
+                         <span class="n">highlightbackground</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">HOVER_CELL_BG</span><span class="p">,</span> <span class="n">highlightthickness</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+        <span class="n">Cellule</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEATH_CELL_BG</span>
+
+<div class="viewcode-block" id="CelluleFrame.basculer"><a class="viewcode-back" href="../celluleFrame.html#celluleFrame.CelluleFrame.basculer">[docs]</a>    <span class="k">def</span> <span class="nf">basculer</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">CelluleFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Méthode qui permet de mettre à jour l&#39;état actuel de la cellule en lui affectant</span>
+<span class="sd">        la valeur de l&#39;état futur. Cette Méthode permet également de changer la couleur de fond</span>
+<span class="sd">        en fonction de l&#39;état courant de la cellule.&quot;&quot;&quot;</span>
+        <span class="n">Cellule</span><span class="o">.</span><span class="n">basculer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">actuel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LIVING_CELL_BG</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;bg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LIVING_CELL_BG</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEATH_CELL_BG</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;bg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEATH_CELL_BG</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test de la classe Cellule</span>
+
+<span class="sd">    +------------+------------+------------+</span>
+<span class="sd">    | c11 en vie | c12 morte  | c13 morte  |</span>
+<span class="sd">    +------------+------------+------------+</span>
+<span class="sd">    | c21 morte  | c22 morte  | c23 morte  |</span>
+<span class="sd">    +------------+------------+------------+</span>
+<span class="sd">    | c31 en vie | c32 en vie | c33 morte  |</span>
+<span class="sd">    +------------+------------+------------+</span>
+
+<span class="sd">    qui doit évoluer en </span>
+
+<span class="sd">    +------------+------------+------------+</span>
+<span class="sd">    | c11 morte  | c12 morte  | c13 morte  |</span>
+<span class="sd">    +------------+------------+------------+</span>
+<span class="sd">    | c21 en vie | c22 en vie | c23 morte  |</span>
+<span class="sd">    +------------+------------+------------+</span>
+<span class="sd">    | c31 morte  | c32 morte  | c33 morte  |</span>
+<span class="sd">    +------------+------------+------------+</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># création des cellules</span>
+    <span class="n">c11</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c12</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c13</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c21</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c22</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c23</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c31</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c32</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c33</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">c11</span><span class="o">.</span><span class="n">actuel</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">c31</span><span class="o">.</span><span class="n">actuel</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">c32</span><span class="o">.</span><span class="n">actuel</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># test de la cellule c11</span>
+    <span class="k">assert</span> <span class="n">c11</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">True</span>
+    <span class="k">assert</span> <span class="n">c11</span><span class="o">.</span><span class="n">futur</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c11</span><span class="o">.</span><span class="n">voisins</span> <span class="o">==</span> <span class="p">[]</span>
+    <span class="c1"># test de la cellule c22</span>
+    <span class="k">assert</span> <span class="n">c22</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c22</span><span class="o">.</span><span class="n">futur</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c22</span><span class="o">.</span><span class="n">voisins</span> <span class="o">==</span> <span class="p">[]</span>
+
+    <span class="c1"># test de la méthode est_vivant()</span>
+    <span class="k">assert</span> <span class="n">c33</span><span class="o">.</span><span class="n">est_vivant</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c31</span><span class="o">.</span><span class="n">est_vivant</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span>
+
+    <span class="c1"># test de la méthode set_voisins()</span>
+    <span class="n">c11</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c12</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">])</span>
+    <span class="n">c12</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c11</span><span class="p">,</span> <span class="n">c13</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">])</span>
+    <span class="n">c13</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c12</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">])</span>
+    <span class="n">c21</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c11</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="n">c32</span><span class="p">])</span>
+    <span class="n">c22</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c11</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="n">c13</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="n">c32</span><span class="p">,</span> <span class="n">c33</span><span class="p">])</span>
+    <span class="n">c23</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c12</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">])</span>
+    <span class="n">c31</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c32</span><span class="p">])</span>
+    <span class="n">c32</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="n">c33</span><span class="p">])</span>
+    <span class="n">c33</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">([</span><span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">c32</span><span class="p">])</span>
+
+    <span class="c1"># test de la méthode get_voisins()</span>
+    <span class="k">assert</span> <span class="n">c22</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="n">c11</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="n">c13</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="n">c32</span><span class="p">,</span> <span class="n">c33</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">c33</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">c32</span><span class="p">]</span>
+
+    <span class="c1"># tests de la méthode calcule_etat_futur</span>
+    <span class="k">for</span> <span class="n">cel</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c11</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="n">c13</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="n">c32</span><span class="p">,</span> <span class="n">c33</span><span class="p">]:</span>
+        <span class="n">cel</span><span class="o">.</span><span class="n">calcule_etat_futur</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">cel</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c11</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="n">c13</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="n">c32</span><span class="p">,</span> <span class="n">c33</span><span class="p">]:</span>
+        <span class="n">cel</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">c11</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c12</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c13</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c21</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">True</span>
+    <span class="k">assert</span> <span class="n">c22</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">True</span>
+    <span class="k">assert</span> <span class="n">c23</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c31</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c32</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">c33</span><span class="o">.</span><span class="n">actuel</span> <span class="o">==</span> <span class="kc">False</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Joffrey COTTIN, Clarine AZINMEDEM, Christophe RAVIER.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grilleFrame &mdash; Documentation Jeu de la Vie 1.0.0</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Jeu de la Vie
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../app.html">module app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibli_exemples.html">module bibli_exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cellule.html">module cellule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../celluleFrame.html">module celluleFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grille.html">module grille</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grilleFrame.html">module grilleFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">module main</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jeu de la Vie</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Code du module</a> &raquo;</li>
+      <li>grilleFrame</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de grilleFrame</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">grilleFrame est un module utilisé uniquement par la version graphique du jeu.</span>
+<span class="sd">Ce module contient l&#39;implémentation de la classe GrilleFrame qui est très importante</span>
+<span class="sd">pour la version graphique du projet, car il s&#39;agit en quelque sorte du terrain sur lequel</span>
+<span class="sd">se déroule le jeu de la vie.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">celluleFrame</span> <span class="kn">import</span> <span class="n">CelluleFrame</span>
+<span class="kn">from</span> <span class="nn">grille</span> <span class="kn">import</span> <span class="n">Grille</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+
+
+<div class="viewcode-block" id="GrilleFrame"><a class="viewcode-back" href="../grilleFrame.html#grilleFrame.GrilleFrame">[docs]</a><span class="k">class</span> <span class="nc">GrilleFrame</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">,</span> <span class="n">Grille</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cette classe hérite de la classe Grille et permet d&#39;implémenter la grille sur laquelle</span>
+<span class="sd">    se déroule le jeu de la vie qui peut être plane ou torique.</span>
+<span class="sd">    master: il s&#39;agit du composant graphique parent de la grille.</span>
+<span class="sd">    nbLignes: nombre de lignes de la grille.</span>
+<span class="sd">    nbColonnes: nombre de colonnes de la grille.</span>
+<span class="sd">    typeg: type de grille (plane ou torique).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">GrilleFrame</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">nbLignes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nbColonnes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">typeg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Constructeur de la classe CelluleFrame &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">master</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#E8F9FD&quot;</span><span class="p">,</span>
+                         <span class="n">highlightbackground</span><span class="o">=</span><span class="s2">&quot;#2155CD&quot;</span><span class="p">,</span> <span class="n">highlightthickness</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+        <span class="n">Grille</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbLignes</span><span class="p">,</span> <span class="n">nbColonnes</span><span class="p">,</span> <span class="n">typeg</span><span class="p">)</span>
+
+        <span class="c1"># Initialisation des cellules</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid_rowconfigure</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">cell</span> <span class="o">=</span> <span class="n">CelluleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                                    <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">winfo_height</span><span class="p">()</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span><span class="p">,</span>
+                                    <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">winfo_width</span><span class="p">()</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span><span class="p">)</span>
+                <span class="n">cell</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">j</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;NSEW&quot;</span><span class="p">)</span>
+                <span class="c1"># Associer le click gauche de la souris sur la cellule à un changement d&#39;etat de la cellule</span>
+                <span class="n">cell</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Button-1&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_cell_click</span><span class="p">)</span>
+                <span class="c1"># Associer le survol de la souris sur la cellule à un changement de couleur de fond</span>
+                <span class="n">cell</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Enter&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_cell_hover</span><span class="p">)</span>
+                <span class="c1"># Quand on arrete de survoler une cellule, sa couleur de fond est rétablie</span>
+                <span class="n">cell</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Leave&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_cell_leave</span><span class="p">)</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+        <span class="c1"># Initialisation des voisins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">affecte_voisins</span><span class="p">()</span>
+
+<div class="viewcode-block" id="GrilleFrame.remplir_alea"><a class="viewcode-back" href="../grilleFrame.html#grilleFrame.GrilleFrame.remplir_alea">[docs]</a>    <span class="k">def</span> <span class="nf">remplir_alea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taux</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Méthode qui permet de remplir aléatoirement la Grille avec un certain taux de cellules vivantes.</span>
+<span class="sd">        Le paramètre &quot;taux&quot; représente le pourcentage de cellules vivantes à créer sur la grille. &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nbLignes</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nbColonnes</span><span class="p">):</span>
+                <span class="n">cellule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getXY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+                <span class="n">cellule</span><span class="o">.</span><span class="n">mourir</span><span class="p">()</span>
+                <span class="n">cellule</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">taux</span> <span class="o">/</span> <span class="mi">100</span><span class="p">):</span>
+                    <span class="n">cellule</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+                    <span class="n">cellule</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GrilleFrame.on_cell_click"><a class="viewcode-back" href="../grilleFrame.html#grilleFrame.GrilleFrame.on_cell_click">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">on_cell_click</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Méthode qui permet de changer l&#39;état d&#39;une cellule de la grille lorsqu&#39;on clique dessus. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">est_vivant</span><span class="p">():</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">mourir</span><span class="p">()</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">naitre</span><span class="p">()</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">basculer</span><span class="p">()</span>
+        <span class="c1"># Réinitialiser le compteur d&#39;itération de l&#39;application</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">winfo_toplevel</span><span class="p">()</span><span class="o">.</span><span class="n">currentIter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GrilleFrame.on_cell_hover"><a class="viewcode-back" href="../grilleFrame.html#grilleFrame.GrilleFrame.on_cell_hover">[docs]</a>    <span class="k">def</span> <span class="nf">on_cell_hover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Méthode qui permet de changer la couleur de fond d&#39;une cellule de la grille</span>
+<span class="sd">        lorsqu&#39;elle est survolée. &quot;&quot;&quot;</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">widget</span>
+        <span class="n">cell</span><span class="p">[</span><span class="s2">&quot;bg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">HOVER_CELL_BG</span></div>
+
+<div class="viewcode-block" id="GrilleFrame.on_cell_leave"><a class="viewcode-back" href="../grilleFrame.html#grilleFrame.GrilleFrame.on_cell_leave">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">on_cell_leave</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Méthode qui permet de rétablir la couleur de fond d&#39;une cellule lorsqu&#39;elle n&#39;est plus survolée. &quot;&quot;&quot;</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">widget</span>
+        <span class="n">cell</span><span class="p">[</span><span class="s2">&quot;bg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">bg</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">maGrille</span> <span class="o">=</span> <span class="n">GrilleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nbLignes</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">nbColonnes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">typeg</span><span class="o">=</span><span class="s1">&#39;plane&#39;</span><span class="p">)</span>
+
+    <span class="c1"># test d&#39;accès au attributs</span>
+    <span class="k">assert</span> <span class="n">maGrille</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">==</span> <span class="mi">15</span>
+    <span class="k">assert</span> <span class="n">maGrille</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">==</span> <span class="mi">10</span>
+    <span class="k">assert</span> <span class="n">maGrille</span><span class="o">.</span><span class="n">get_nbLignes</span><span class="p">()</span> <span class="o">==</span> <span class="mi">15</span>
+    <span class="k">assert</span> <span class="n">maGrille</span><span class="o">.</span><span class="n">get_nbColonnes</span><span class="p">()</span> <span class="o">==</span> <span class="mi">10</span>
+
+    <span class="c1"># test de la méthode dans_grille()</span>
+    <span class="k">assert</span> <span class="n">maGrille</span><span class="o">.</span><span class="n">dans_grille</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+    <span class="k">assert</span> <span class="n">maGrille</span><span class="o">.</span><span class="n">dans_grille</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">maGrille</span><span class="o">.</span><span class="n">dans_grille</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+
+    <span class="c1"># test de la méthode get_voisins()</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="mi">8</span>
+
+    <span class="c1"># répétition des tests avec une grille torique</span>
+    <span class="n">maGrille2</span> <span class="o">=</span> <span class="n">GrilleFrame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nbLignes</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">nbColonnes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">typeg</span><span class="o">=</span><span class="s1">&#39;torique&#39;</span><span class="p">)</span>
+
+    <span class="c1"># test d&#39;accès au attributs</span>
+    <span class="k">assert</span> <span class="n">maGrille2</span><span class="o">.</span><span class="n">nbLignes</span> <span class="o">==</span> <span class="mi">15</span>
+    <span class="k">assert</span> <span class="n">maGrille2</span><span class="o">.</span><span class="n">nbColonnes</span> <span class="o">==</span> <span class="mi">10</span>
+    <span class="k">assert</span> <span class="n">maGrille2</span><span class="o">.</span><span class="n">get_nbLignes</span><span class="p">()</span> <span class="o">==</span> <span class="mi">15</span>
+    <span class="k">assert</span> <span class="n">maGrille2</span><span class="o">.</span><span class="n">get_nbColonnes</span><span class="p">()</span> <span class="o">==</span> <span class="mi">10</span>
+
+    <span class="c1"># test de la méthode dans_grille()</span>
+    <span class="k">assert</span> <span class="n">maGrille2</span><span class="o">.</span><span class="n">dans_grille</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+    <span class="k">assert</span> <span class="n">maGrille2</span><span class="o">.</span><span class="n">dans_grille</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">maGrille2</span><span class="o">.</span><span class="n">dans_grille</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+
+    <span class="c1"># test de la méthode get_voisins()</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille2</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">8</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille2</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="mi">8</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille2</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">8</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">maGrille2</span><span class="o">.</span><span class="n">get_voisins</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="mi">8</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Joffrey COTTIN, Clarine AZINMEDEM, Christophe RAVIER.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

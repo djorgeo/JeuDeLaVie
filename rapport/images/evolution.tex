@@ -1,0 +1,67 @@
+% \documentclass[tikz]{standalone}
+% \usepackage{tikz}
+% \begin{document}
+
+\tikzstyle{morte} = [minimum width= 1cm, minimum height = 1cm, rectangle, fill=blue!65]
+\tikzstyle{vivante} = [minimum width= 1cm, minimum height = 1cm, rectangle, fill=red!65]
+
+\begin{tikzpicture}
+\node[vivante] at (0,2) {};
+\node[morte] at (0,1) {};
+\node[vivante] at (0,0) {};
+\node[morte] at (1,2) {};
+\node[vivante] at (1,1) {};
+\node[morte] at (1,0) {};
+\node[vivante] at (2,2) {};
+\node[morte] at (2,1) {};
+\node[morte] at (2,0) {};
+
+\foreach \x in {-0.5,0.5,...,2.5}{
+    \draw (\x,-0.5) -- (\x,2.5);
+}    
+\foreach \y in {-0.5,0.5,...,2.5}{
+    \draw (-0.5,\y) -- (2.5,\y);
+}
+
+\draw[->,>=stealth] (3,1) -- (4,1);
+
+\node[morte] at (5,2) {};
+\node[vivante] at (5,1) {};
+\node[morte] at (5,0) {};
+\node[vivante] at (6,2) {};
+\node[vivante] at (6,1) {};
+\node[morte] at (6,0) {};
+\node[morte] at (7,2) {};
+\node[morte] at (7,1) {};
+\node[morte] at (7,0) {};
+
+\foreach \x in {4.5,5.5,...,7.5}{
+    \draw (\x,-0.5) -- (\x,2.5);
+}    
+\foreach \y in {-0.5,0.5,...,2.5}{
+    \draw (4.5,\y) -- (7.5,\y);
+}
+
+\draw[->,>=stealth] (8,1) -- (9,1);
+
+\node[vivante] at (10,2) {};
+\node[vivante] at (10,1) {};
+\node[morte] at (10,0) {};
+\node[vivante] at (11,2) {};
+\node[vivante] at (11,1) {};
+\node[morte] at (11,0) {};
+\node[morte] at (12,2) {};
+\node[morte] at (12,1) {};
+\node[morte] at (12,0) {};
+
+\foreach \x in {9.5,10.5,...,12.5}{
+    \draw (\x,-0.5) -- (\x,2.5);
+}    
+\foreach \y in {-0.5,0.5,...,2.5}{
+    \draw (9.5,\y) -- (12.5,\y);
+}
+\end{tikzpicture}
+
+% \end{document}
+
+

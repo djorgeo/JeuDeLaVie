@@ -1,0 +1,22 @@
+% \documentclass[tikz]{standalone}
+% \usepackage{tikz}
+% \begin{document}
+
+\tikzstyle{voisin} = [minimum width= 1cm, minimum height = 1cm, rectangle, draw, fill=blue!75]
+\tikzstyle{cellule} = [minimum width= 1cm, minimum height = 1cm, rectangle, draw]
+
+\begin{tikzpicture}
+\node[cellule] at (0,0) {$c_{i,j}$};
+\node[voisin] at (-1,-1) {};
+\node[voisin] at (0,-1) {};
+\node[voisin] at (1,-1) {};
+\node[voisin] at (-1,1) {};
+\node[voisin] at (0,1) {};
+\node[voisin] at (1,1) {};
+\node[voisin] at (-1,0) {};
+\node[voisin] at (1,0) {};
+\end{tikzpicture}
+
+% \end{document}
+
+
